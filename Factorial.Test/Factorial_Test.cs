@@ -14,8 +14,9 @@ namespace Factorial.Test
         public void CompareSpeedMethods()
         {
             // avarrage
-            int[] stub = Enumerable
+            uint[] stub = Enumerable
                 .Range(0, 71)
+                .Select(t => (uint)t)
                 .ToArray();
 
             // act
@@ -23,10 +24,15 @@ namespace Factorial.Test
 
             timer.Start();
             foreach (var i in stub)
-                //Fibonacci.FibonacciBine(i);
+                Factorial.FactorialPow(i);
             timer.Stop();
+            Debug.WriteLine($"\nRamanujan approximation power: {timer.Elapsed.TotalMilliseconds} ms\n");
 
-            Debug.WriteLine($"\nBinet's formula: {timer.Elapsed.TotalMilliseconds} ms\n");
+            timer.Restart();
+            foreach (var i in stub)
+                Factorial.FactorialExp(i);
+            timer.Stop();
+            Debug.WriteLine($"Ramanujan approximation exponent: {timer.Elapsed.TotalMilliseconds} ms\n");
         }
     }
 }
