@@ -17,7 +17,7 @@ namespace Factorial.Test
         /// for use this method, you should comment "throw" block and change private -> public
         /// </summary>
         [TestMethod]
-        public void MaxNumberWithAcurateValue()
+        private void MaxNumberWithAcurateValue()
         {
             // For present result
             var str = new StringBuilder("\nResult data:\n\n");
@@ -89,7 +89,7 @@ namespace Factorial.Test
         {
             // avarrage
             uint[] stub = Enumerable
-                .Range(0, 71)
+                .Range(0, 12)
                 .Select(t => (uint)t)
                 .ToArray();
 
@@ -107,6 +107,13 @@ namespace Factorial.Test
                 Factorial.FactorialExp(i);
             timer.Stop();
             Debug.WriteLine($"Ramanujan approximation exponent: {timer.Elapsed.TotalMilliseconds} ms\n");
+
+            timer.Restart();
+            foreach (var i in stub)
+                Factorial.FactorialSlow(i);
+            timer.Stop();
+            Debug.WriteLine($"Base calculate: {timer.Elapsed.TotalMilliseconds} ms\n");
+
         }
 
     }
