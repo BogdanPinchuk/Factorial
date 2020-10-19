@@ -23,5 +23,12 @@
             <param name="n">value</param>
             <returns>Factorial number</returns>
         </member>
+        <member name="M:Factorial.Factorial.FactorialSlow(System.UInt32)">
+            <summary>
+            Slow calculate but accurate result, can calculate absolute value more then 70
+            </summary>
+            <param name="n">value</param>
+            <returns>Factorial number</returns>
+        </member>
     </members>
 </doc>
