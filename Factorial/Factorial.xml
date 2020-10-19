@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Factorial</name>
+    </assembly>
+    <members>
+        <member name="T:Factorial.Factorial">
+            <summary>
+            Factorial number
+            </summary>
+        </member>
+        <member name="M:Factorial.Factorial.FactorialPow(System.UInt32)">
+            <summary>
+            Ramanujan approximation power
+            </summary>
+            <param name="n">value</param>
+            <returns>Factorial number</returns>
+        </member>
+        <member name="M:Factorial.Factorial.FactorialExp(System.UInt32)">
+            <summary>
+            Ramanujan approximation exponent
+            </summary>
+            <param name="n">value</param>
+            <returns>Factorial number</returns>
+        </member>
+    </members>
+</doc>
