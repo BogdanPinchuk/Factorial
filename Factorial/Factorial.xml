@@ -11,17 +11,45 @@
         </member>
         <member name="M:Factorial.Factorial.FactorialPow(System.UInt32)">
             <summary>
-            Ramanujan approximation power
+            Ramanujan approximation power formula
             </summary>
             <param name="n">value</param>
             <returns>Factorial number</returns>
         </member>
+        <member name="M:Factorial.Factorial.FactorialPow(System.UInt32[])">
+            <summary>
+            Ramanujan approximation power formula
+            </summary>
+            <param name="array">array value</param>
+            <returns>array Factorial number</returns>
+        </member>
+        <member name="M:Factorial.Factorial.FactorialPow_Par(System.UInt32[])">
+            <summary>
+            Ramanujan approximation power formula using parallel calculations
+            </summary>
+            <param name="array">array value</param>
+            <returns>array Factorial number</returns>
+        </member>
         <member name="M:Factorial.Factorial.FactorialExp(System.UInt32)">
             <summary>
-            Ramanujan approximation exponent
+            Ramanujan approximation exponent formula
             </summary>
             <param name="n">value</param>
             <returns>Factorial number</returns>
+        </member>
+        <member name="M:Factorial.Factorial.FactorialExp(System.UInt32[])">
+            <summary>
+            Ramanujan approximation exponent formula
+            </summary>
+            <param name="array">array value</param>
+            <returns>array Factorial number</returns>
+        </member>
+        <member name="M:Factorial.Factorial.FactorialExp_Par(System.UInt32[])">
+            <summary>
+            Ramanujan approximation exponent formula using parallel calculations
+            </summary>
+            <param name="array">array value</param>
+            <returns>array Factorial number</returns>
         </member>
         <member name="M:Factorial.Factorial.FactorialSlow(System.UInt32)">
             <summary>
