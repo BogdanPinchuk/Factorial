@@ -8,8 +8,10 @@
 using System;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
+[assembly: InternalsVisibleTo("Factorial.Test")]
 namespace Factorial
 {
     /// <summary>
@@ -17,8 +19,10 @@ namespace Factorial
     /// </summary>
     public class Factorial
     {
-        private const string errorP = "Absolute values more than 9 are not accurate. You should use other method.";
-        private const string errorE = "Absolute values more than 11 are not accurate. You should use other method.";
+        internal const string errorP = 
+            "Absolute values more than 9 are not accurate. You should use other method.";
+        internal const string errorE = 
+            "Absolute values more than 11 are not accurate. You should use other method.";
 
         /// <summary>
         /// Ramanujan approximation power formula
@@ -251,10 +255,8 @@ namespace Factorial
         }
 
 
-
-
         /// <summary>
-        /// Slow calculate but accurate result, can calculate absolute value more then 70
+        /// Slow calculate but accurate result, can calculate absolute value more then 11
         /// </summary>
         /// <param name="n">value</param>
         /// <returns>Factorial number</returns>
@@ -268,6 +270,88 @@ namespace Factorial
                 return 1;
             else if (value == 2)
                 return 2;
+
+            // calculate
+            BigInteger result = 2;
+
+            for (uint i = 3; i <= value; i++)
+                result *= i;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Slow calculate but accurate result, can calculate absolute value more then 11
+        /// </summary>
+        /// <param name="n">value</param>
+        /// <returns>Factorial number</returns>
+        public static unsafe BigInteger FactorialSlow(BigInteger n)
+        {
+            // absolutely value of n 
+            BigInteger value = n;
+
+            // fast answer or start data for calculate
+            if (n <= 1)
+                return 1;
+            else if (value == 2)
+                return 2;
+
+            // calculate
+            BigInteger result = 2;
+
+            for (BigInteger i = 3; i <= value; i++)
+                result *= i;
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Fast calculate but accurate result, can calculate absolute value more then 11
+        /// </summary>
+        /// <param name="n">value</param>
+        /// <returns>Factorial number</returns>
+        public static unsafe BigInteger FactorialFast(uint n)
+        {
+            // absolutely value of n 
+            uint value = n;
+
+            // fast answer or start data for calculate
+            if (n <= 1)
+                return 1;
+            if (n == 2)
+                return 2;
+
+            if (value <= 11)
+                return (BigInteger)FactorialExp(value);
+
+            // calculate
+            BigInteger result = 2;
+
+            for (uint i = 3; i <= value; i++)
+                result *= i;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Fast calculate but accurate result, can calculate absolute value more then 11
+        /// </summary>
+        /// <param name="n">value</param>
+        /// <returns>Factorial number</returns>
+        public static unsafe BigInteger FactorialFast(BigInteger n)
+        {
+            // absolutely value of n 
+            BigInteger value = n;
+
+            // fast answer or start data for calculate
+            if (n <= 1)
+                return 1;
+            if (n == 2)
+                return 2;
+
+            if (value <= 11)
+                return (BigInteger)FactorialExp((uint)value);
 
             // calculate
             BigInteger result = 2;

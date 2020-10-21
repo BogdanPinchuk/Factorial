@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
@@ -92,10 +93,9 @@ namespace Factorial.Test
         public void FactorialSlow_OneInputValue()
             => Factorial_OneInputValue(Factorial.FactorialSlow);
 
-        //TODO: FactorialFast_OneInputValue()
-        //[TestMethod]
-        //public void FactorialFast_OneInputValue()
-        //    => Factorial_OneInputValue(Factorial.FibonacciFast);
+        [TestMethod]
+        public void FactorialFast_OneInputValue()
+            => Factorial_OneInputValue(Factorial.FactorialFast);
 
 
         private void Factorial_OneInputValue(del_Factorial<double, uint> fib)
@@ -155,45 +155,52 @@ namespace Factorial.Test
 
         [TestMethod]
         public void FactorialPow_OneInputValue_Exception()
-            => Factorial_OneInputValueException_(Factorial.FactorialPow);
+            => Factorial_OneInputValueException_(Factorial.FactorialPow, Factorial.errorP);
 
         [TestMethod]
         public void FactorialPow_ArrayValu_Exception()
-            => Factorial_ArrayValue_Exception(Factorial.FactorialPow);
+            => Factorial_ArrayValue_Exception(Factorial.FactorialPow, Factorial.errorP);
 
         [TestMethod]
         public void FactorialExp_OneInputValue_Exception()
-            => Factorial_OneInputValueException_(Factorial.FactorialExp);
+            => Factorial_OneInputValueException_(Factorial.FactorialExp, Factorial.errorE);
 
         [TestMethod]
         public void FactorialExp_ArrayValu_Exception()
-            => Factorial_ArrayValue_Exception(Factorial.FactorialExp);
+            => Factorial_ArrayValue_Exception(Factorial.FactorialExp, Factorial.errorE);
 
 
-
-        private void Factorial_OneInputValueException_(del_Factorial<double, uint> fib)
+        private void Factorial_OneInputValueException_(del_Factorial<double, uint> fib, string expected)
         {
             // avarrage
             uint[] stub = new uint[] { 12 };
+            List<string> actual = new List<string>();
 
-            string expected = "Absolute values more than 11 are not accurate. You should use other method.";
-
-            // act - assert
+            // act
             foreach (var i in stub)
-                Assert.ThrowsException<Exception>(() => fib(i), expected);
+                actual.Add(Assert.ThrowsException<Exception>(() => fib(i)).Message);
+
+            // assert
+            foreach (var i in actual)
+                Assert.AreEqual(expected, i);
+
+            foreach (var i in actual)
+                Debug.WriteLine(i);
         }
 
-        private void Factorial_ArrayValue_Exception(del_Factorial<double[], uint[]> fib)
+        private void Factorial_ArrayValue_Exception(del_Factorial<double[], uint[]> fib, string expected)
         {
             // avarrage
-            uint[] stub = new uint[] { 12 };
+            uint[] stub = new uint[] { 8, 9, 10, 11, 12 };
 
-            string expected = "Absolute values more than 11 are not accurate. You should use other method.";
+            // act
+            string actual = Assert.ThrowsException<Exception>(() => fib(stub)).Message;
 
-            // act - assert
-            Assert.ThrowsException<Exception>(() => fib(stub), expected);
+            // assert
+            Assert.AreEqual(expected, actual);
+
+            Debug.WriteLine(actual);
         }
-
 
         private void Factorial_OneInputValue(del_Factorial<BigInteger, uint> fib)
         {
@@ -225,13 +232,12 @@ namespace Factorial.Test
 
 
         [TestMethod]
-        public void Factorial_Slow_OneInputValue_Par_0_93()
+        public void Factorial_Slow_OneInputValue_Par_0_20()
             => Factorial_OneInputValue_Par_0_20(Factorial.FactorialSlow);
 
-        //TODO: Factorial_Fast_OneInputValue_Par_0_20()
-        //[TestMethod]
-        //public void Factorial_Fast_OneInputValue_Par_0_20()
-        //    => Factorial_OneInputValue_Par_0_20(Factorial.FactorialFast);
+        [TestMethod]
+        public void Factorial_Fast_OneInputValue_Par_0_20()
+            => Factorial_OneInputValue_Par_0_20(Factorial.FactorialFast);
 
 
         private void Factorial_OneInputValue_Par_0_20(del_Factorial<BigInteger, uint> fib)
@@ -345,13 +351,33 @@ namespace Factorial.Test
             foreach (var i in stub)
                 Factorial.FactorialPow(i);
             timer.Stop();
-            Debug.WriteLine($"\nRamanujan approximation power: {timer.Elapsed.TotalMilliseconds} ms\n");
+            Debug.WriteLine($"\nRamanujan approximation power formula: {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             foreach (var i in stub)
                 Factorial.FactorialExp(i);
             timer.Stop();
-            Debug.WriteLine($"Ramanujan approximation exponent: {timer.Elapsed.TotalMilliseconds} ms\n");
+            Debug.WriteLine($"Ramanujan approximation exponent formula: {timer.Elapsed.TotalMilliseconds} ms\n");
+
+            timer.Restart();
+            Factorial.FactorialPow(stub);
+            timer.Stop();
+            Debug.WriteLine($"Ramanujan approximation power formula (array): {timer.Elapsed.TotalMilliseconds} ms\n");
+
+            timer.Restart();
+            Factorial.FactorialExp(stub);
+            timer.Stop();
+            Debug.WriteLine($"Ramanujan approximation exponent formula (array): {timer.Elapsed.TotalMilliseconds} ms\n");
+
+            timer.Restart();
+            Factorial.FactorialPow_Par(stub);
+            timer.Stop();
+            Debug.WriteLine($"Ramanujan approximation power formula (parallel): {timer.Elapsed.TotalMilliseconds} ms\n");
+
+            timer.Restart();
+            Factorial.FactorialExp_Par(stub);
+            timer.Stop();
+            Debug.WriteLine($"Ramanujan approximation power formula (parallel): {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             foreach (var i in stub)
@@ -359,8 +385,25 @@ namespace Factorial.Test
             timer.Stop();
             Debug.WriteLine($"Base calculate: {timer.Elapsed.TotalMilliseconds} ms\n");
 
+            timer.Restart();
+            foreach (BigInteger i in stub)
+                Factorial.FactorialSlow(i);
+            timer.Stop();
+            Debug.WriteLine($"Base calculate (BigInteger): {timer.Elapsed.TotalMilliseconds} ms\n");
+
+            timer.Restart();
+            foreach (var i in stub)
+                Factorial.FactorialFast(i);
+            timer.Stop();
+            Debug.WriteLine($"Fast calculate: {timer.Elapsed.TotalMilliseconds} ms\n");
+
+            timer.Restart();
+            foreach (BigInteger i in stub)
+                Factorial.FactorialFast(i);
+            timer.Stop();
+            Debug.WriteLine($"Fast calculate (BigInteger): {timer.Elapsed.TotalMilliseconds} ms\n");
+
         }
 
-        // TODO: Extent the CompareSpeedMethods()
     }
 }

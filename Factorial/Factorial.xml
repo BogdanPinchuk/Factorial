@@ -53,7 +53,28 @@
         </member>
         <member name="M:Factorial.Factorial.FactorialSlow(System.UInt32)">
             <summary>
-            Slow calculate but accurate result, can calculate absolute value more then 70
+            Slow calculate but accurate result, can calculate absolute value more then 11
+            </summary>
+            <param name="n">value</param>
+            <returns>Factorial number</returns>
+        </member>
+        <member name="M:Factorial.Factorial.FactorialSlow(System.Numerics.BigInteger)">
+            <summary>
+            Slow calculate but accurate result, can calculate absolute value more then 11
+            </summary>
+            <param name="n">value</param>
+            <returns>Factorial number</returns>
+        </member>
+        <member name="M:Factorial.Factorial.FactorialFast(System.UInt32)">
+            <summary>
+            Fast calculate but accurate result, can calculate absolute value more then 11
+            </summary>
+            <param name="n">value</param>
+            <returns>Factorial number</returns>
+        </member>
+        <member name="M:Factorial.Factorial.FactorialFast(System.Numerics.BigInteger)">
+            <summary>
+            Fast calculate but accurate result, can calculate absolute value more then 11
             </summary>
             <param name="n">value</param>
             <returns>Factorial number</returns>
