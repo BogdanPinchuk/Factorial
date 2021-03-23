@@ -123,7 +123,7 @@ namespace Factorial.Test
             for (int i = 0; i < actual.Length; i++)
                 Assert.AreEqual(Expected[i], actual[i]);
 
-            Debug.WriteLine(str.ToString());
+            Trace.WriteLine(str.ToString());
         }
 
         private void Factorial_ArrayValue(del_Factorial<double[], uint[]> fib)
@@ -148,7 +148,7 @@ namespace Factorial.Test
             for (int i = 0; i < actual.Length; i++)
                 Assert.AreEqual(Expected[i], actual[i]);
 
-            Debug.WriteLine(str.ToString());
+            Trace.WriteLine(str.ToString());
         }
 
 
@@ -185,7 +185,7 @@ namespace Factorial.Test
                 Assert.AreEqual(expected, i);
 
             foreach (var i in actual)
-                Debug.WriteLine(i);
+                Trace.WriteLine(i);
         }
 
         private void Factorial_ArrayValue_Exception(del_Factorial<double[], uint[]> fib, string expected)
@@ -199,7 +199,7 @@ namespace Factorial.Test
             // assert
             Assert.AreEqual(expected, actual);
 
-            Debug.WriteLine(actual);
+            Trace.WriteLine(actual);
         }
 
         private void Factorial_OneInputValue(del_Factorial<BigInteger, uint> fib)
@@ -227,7 +227,7 @@ namespace Factorial.Test
             for (int i = 0; i < actual.Length; i++)
                 Assert.AreEqual((BigInteger)Expected[i], actual[i]);
 
-            Debug.WriteLine(str.ToString());
+            Trace.WriteLine(str.ToString());
         }
 
 
@@ -257,7 +257,7 @@ namespace Factorial.Test
             for (int i = 0; i < actual.Length; i++)
                 str.Append(i).Append(":\t").Append(actual[i]).Append("\n");
 
-            Debug.WriteLine(str);
+            Trace.WriteLine(str);
         }
 
 
@@ -332,7 +332,7 @@ namespace Factorial.Test
             #endregion
 
             // present
-            Debug.WriteLine(str);
+            Trace.WriteLine(str);
         }
 
         [TestMethod]
@@ -351,57 +351,57 @@ namespace Factorial.Test
             foreach (var i in stub)
                 Factorial.FactorialPow(i);
             timer.Stop();
-            Debug.WriteLine($"\nRamanujan approximation power formula: {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"\nRamanujan approximation power formula: {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             foreach (var i in stub)
                 Factorial.FactorialExp(i);
             timer.Stop();
-            Debug.WriteLine($"Ramanujan approximation exponent formula: {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Ramanujan approximation exponent formula: {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             Factorial.FactorialPow(stub);
             timer.Stop();
-            Debug.WriteLine($"Ramanujan approximation power formula (array): {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Ramanujan approximation power formula (array): {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             Factorial.FactorialExp(stub);
             timer.Stop();
-            Debug.WriteLine($"Ramanujan approximation exponent formula (array): {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Ramanujan approximation exponent formula (array): {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             Factorial.FactorialPow_Par(stub);
             timer.Stop();
-            Debug.WriteLine($"Ramanujan approximation power formula (parallel): {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Ramanujan approximation power formula (parallel): {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             Factorial.FactorialExp_Par(stub);
             timer.Stop();
-            Debug.WriteLine($"Ramanujan approximation power formula (parallel): {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Ramanujan approximation power formula (parallel): {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             foreach (var i in stub)
                 Factorial.FactorialSlow(i);
             timer.Stop();
-            Debug.WriteLine($"Base calculate: {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Base calculate: {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             foreach (BigInteger i in stub)
                 Factorial.FactorialSlow(i);
             timer.Stop();
-            Debug.WriteLine($"Base calculate (BigInteger): {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Base calculate (BigInteger): {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             foreach (var i in stub)
                 Factorial.FactorialFast(i);
             timer.Stop();
-            Debug.WriteLine($"Fast calculate: {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Fast calculate: {timer.Elapsed.TotalMilliseconds} ms\n");
 
             timer.Restart();
             foreach (BigInteger i in stub)
                 Factorial.FactorialFast(i);
             timer.Stop();
-            Debug.WriteLine($"Fast calculate (BigInteger): {timer.Elapsed.TotalMilliseconds} ms\n");
+            Trace.WriteLine($"Fast calculate (BigInteger): {timer.Elapsed.TotalMilliseconds} ms\n");
 
         }
 
