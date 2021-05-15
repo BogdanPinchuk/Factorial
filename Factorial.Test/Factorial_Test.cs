@@ -98,7 +98,7 @@ namespace Factorial.Test
             => Factorial_OneInputValue(Factorial.FactorialFast);
 
 
-        private void Factorial_OneInputValue(del_Factorial<double, uint> fib)
+        private void Factorial_OneInputValue(del_Factorial<double, uint> fac)
         {
             // avarrage
             var str = new StringBuilder("\nInput data:\n");
@@ -113,7 +113,7 @@ namespace Factorial.Test
             double[] actual = new double[Stub.Length];
 
             for (int i = 0; i < Stub.Length; i++)
-                actual[i] = fib(Stub[i]);
+                actual[i] = fac(Stub[i]);
 
             str.Append("\n\nActual:\n");
             foreach (var i in actual)
@@ -126,7 +126,7 @@ namespace Factorial.Test
             Debug.WriteLine(str.ToString());
         }
 
-        private void Factorial_ArrayValue(del_Factorial<double[], uint[]> fib)
+        private void Factorial_ArrayValue(del_Factorial<double[], uint[]> fac)
         {
             // avarrage
             var str = new StringBuilder("\nInput data:\n");
@@ -138,7 +138,7 @@ namespace Factorial.Test
                 str.Append(i).Append("\t");
 
             // act
-            double[] actual = fib(Stub);
+            double[] actual = fac(Stub);
 
             str.Append("\n\nActual:\n");
             foreach (var i in actual)
@@ -170,7 +170,7 @@ namespace Factorial.Test
             => Factorial_ArrayValue_Exception(Factorial.FactorialExp, Factorial.errorE);
 
 
-        private void Factorial_OneInputValueException_(del_Factorial<double, uint> fib, string expected)
+        private void Factorial_OneInputValueException_(del_Factorial<double, uint> fac, string expected)
         {
             // avarrage
             uint[] stub = new uint[] { 12 };
@@ -178,7 +178,7 @@ namespace Factorial.Test
 
             // act
             foreach (var i in stub)
-                actual.Add(Assert.ThrowsException<Exception>(() => fib(i)).Message);
+                actual.Add(Assert.ThrowsException<Exception>(() => fac(i)).Message);
 
             // assert
             foreach (var i in actual)
@@ -188,13 +188,13 @@ namespace Factorial.Test
                 Debug.WriteLine(i);
         }
 
-        private void Factorial_ArrayValue_Exception(del_Factorial<double[], uint[]> fib, string expected)
+        private void Factorial_ArrayValue_Exception(del_Factorial<double[], uint[]> fac, string expected)
         {
             // avarrage
             uint[] stub = new uint[] { 8, 9, 10, 11, 12 };
 
             // act
-            string actual = Assert.ThrowsException<Exception>(() => fib(stub)).Message;
+            string actual = Assert.ThrowsException<Exception>(() => fac(stub)).Message;
 
             // assert
             Assert.AreEqual(expected, actual);
@@ -202,7 +202,7 @@ namespace Factorial.Test
             Debug.WriteLine(actual);
         }
 
-        private void Factorial_OneInputValue(del_Factorial<BigInteger, uint> fib)
+        private void Factorial_OneInputValue(del_Factorial<BigInteger, uint> fac)
         {
             // avarrage
             var str = new StringBuilder("\nInput data:\n");
@@ -217,7 +217,7 @@ namespace Factorial.Test
             BigInteger[] actual = new BigInteger[Stub.Length];
 
             for (int i = 0; i < Stub.Length; i++)
-                actual[i] = fib(Stub[i]);
+                actual[i] = fac(Stub[i]);
 
             str.Append("\n\nActual:\n");
             foreach (var i in actual)
@@ -240,7 +240,7 @@ namespace Factorial.Test
             => Factorial_OneInputValue_Par_0_20(Factorial.FactorialFast);
 
 
-        private void Factorial_OneInputValue_Par_0_20(del_Factorial<BigInteger, uint> fib)
+        private void Factorial_OneInputValue_Par_0_20(del_Factorial<BigInteger, uint> fac)
         {
             // avarrage
             var str = new StringBuilder("\nResult data:\n\n");
@@ -248,7 +248,7 @@ namespace Factorial.Test
             // act
             BigInteger[] actual = new BigInteger[Big_Expected.Length];
 
-            Parallel.For(0, Big_Expected.Length, (i) => actual[i] = fib((uint)i));
+            Parallel.For(0, Big_Expected.Length, (i) => actual[i] = fac((uint)i));
 
             // assert
             Parallel.For(0, Big_Expected.Length, (i) => Assert.AreEqual(Big_Expected[i], actual[i]));
