@@ -25,7 +25,7 @@ namespace Factorial
             "Absolute values more than 11 are not accurate. You should use other method.";
 
         /// <summary>
-        /// Ramanujan approximation power formula
+        /// Ramanujan's approximation power formula
         /// </summary>
         /// <param name="n">value</param>
         /// <returns>Factorial number</returns>
@@ -51,7 +51,7 @@ namespace Factorial
         }
 
         /// <summary>
-        /// Ramanujan approximation power formula
+        /// Ramanujan's approximation power formula
         /// </summary>
         /// <param name="array">array value</param>
         /// <returns>array Factorial number</returns>
@@ -102,7 +102,7 @@ namespace Factorial
         }
 
         /// <summary>
-        /// Ramanujan approximation power formula using parallel calculations
+        /// Ramanujan's approximation power formula using parallel calculations
         /// </summary>
         /// <param name="array">array value</param>
         /// <returns>array Factorial number</returns>
@@ -139,7 +139,7 @@ namespace Factorial
         }
 
         /// <summary>
-        /// Ramanujan approximation exponent formula
+        /// Stirling's approximation exponent formula
         /// </summary>
         /// <param name="n">value</param>
         /// <returns>Factorial number</returns>
@@ -165,7 +165,7 @@ namespace Factorial
         }
 
         /// <summary>
-        /// Ramanujan approximation exponent formula
+        /// Stirling's approximation exponent formula
         /// </summary>
         /// <param name="array">array value</param>
         /// <returns>array Factorial number</returns>
@@ -217,7 +217,7 @@ namespace Factorial
         }
 
         /// <summary>
-        /// Ramanujan approximation exponent formula using parallel calculations
+        /// Stirling's approximation exponent formula using parallel calculations
         /// </summary>
         /// <param name="array">array value</param>
         /// <returns>array Factorial number</returns>
