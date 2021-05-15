@@ -326,9 +326,9 @@ namespace Factorial
                 return (BigInteger)FactorialExp(value);
 
             // calculate
-            BigInteger result = 2;
+            BigInteger result = (BigInteger)FactorialExp(11);
 
-            for (uint i = 3; i <= value; i++)
+            for (uint i = 12; i <= value; i++)
                 result *= i;
 
             return result;
@@ -354,9 +354,9 @@ namespace Factorial
                 return (BigInteger)FactorialExp((uint)value);
 
             // calculate
-            BigInteger result = 2;
+            BigInteger result = (BigInteger)FactorialExp(11);
 
-            for (uint i = 3; i <= value; i++)
+            for (BigInteger i = 12; i <= value; i++)
                 result *= i;
 
             return result;
